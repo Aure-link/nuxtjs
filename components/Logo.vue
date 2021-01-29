@@ -27,8 +27,10 @@
   }
 }
 @media screen and (max-width: 800px) {
-  .left {
-    margin-left: 5%;
+  .navbar {
+    .left {
+      margin-left: 5%;
+    }
   }
 }
 </style>

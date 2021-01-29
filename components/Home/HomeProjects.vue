@@ -12,7 +12,10 @@
           >
             <a v-bind:href="project.link">
               <div class="filter"></div>
-              <img v-bind:src="require(`~/assets/img/${project.img}.png`)" class="bloc-img" />
+              <img
+                v-bind:src="require(`~/assets/img/${project.img}.png`)"
+                class="bloc-img"
+              />
               <div class="topInfo">
                 <div class="date">
                   <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -138,6 +141,26 @@ export default {
             .fa-calendar {
               margin-bottom: 10px;
             }
+          }
+        }
+      }
+      @media screen and (max-width: 800px) {
+        flex-direction: column;
+        .bloc {
+          margin: 0 auto;
+          width: 90%;
+          margin-bottom: 35px;
+          height: 250px;
+          .filter {
+            background-color: transparent;
+          }
+          .topInfo {
+            opacity: 1;
+            height: 25%;
+          }
+          .info {
+            opacity: 1;
+            height: 20%;
           }
         }
       }
