@@ -17,10 +17,12 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~/assets/main.scss'
+    '~/assets/reset',
+    '~/assets/main'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

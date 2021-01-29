@@ -1,0 +1,189 @@
+<template>
+  <div class="parcours">
+    <div class="container">
+      <div class="left">
+        <h1 class="title">Mon parcours</h1>
+        <div
+          v-for="(item, index) in parcours"
+          v-bind:item="item"
+          v-bind:index="index"
+          v-bind:key="item.id"
+          class="content"
+        >
+          <div class="line">
+            <div class="date">
+              {{ item.date }}
+            </div>
+            <div class="value">
+              {{ item.ecole }}
+            </div>
+            <div v-on:click="BecomeVisible(index)" class="more">Voir plus</div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div
+          v-for="item in parcours"
+          v-if="item.visible"
+          v-bind:key="item.id"
+          class="content"
+        >
+          <div class="illu">
+            <div class="title">{{ item.title }}</div>
+            <img :src="require(`~/assets/img/about/${item.img}.jpg`)" />
+          </div>
+          <div class="explication">
+            <div class="bold">Ce que j'ai appris :</div>
+            <span v-html="item.description_first"></span>
+            <div class="bold">Ce que je retiens :</div>
+            <span v-html="item.description_second"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { parcours } from "../../content/parcours.js";
+export default {
+  data() {
+    return {
+      parcours,
+    };
+  },
+  methods: {
+    BecomeVisible(i) {
+      for (let index = 0; index < this.parcours.length; index++) {
+        const element = this.parcours[index];
+        element.visible = false;
+      }
+      this.parcours[i].visible = true;
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+.parcours {
+  margin-bottom: 75px;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    .left {
+      width: 55%;
+      .title {
+        margin-bottom: 20px;
+      }
+    }
+    .right {
+      width: 40%;
+      .content {
+        .illu {
+          img {
+            height: 150px;
+            width: 100%;
+            object-fit: cover;
+            outline: 1px solid #000;
+            outline-offset: 8px;
+            margin-bottom: 25px;
+          }
+          .title {
+            font-size: 18px;
+            color: #01224f;
+            margin-bottom: 20px;
+          }
+        }
+        .explication {
+          .bold {
+            font-weight: bold;
+            margin: 10px 0;
+          }
+          p {
+            line-height: 25px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+      .content.visible {
+        display: block;
+      }
+    }
+  }
+  .content {
+    .line {
+      display: flex;
+      align-items: center;
+      border-top: 1px solid #f6f6f6;
+      padding: 30px 0;
+      letter-spacing: 1px;
+      position: relative;
+      .date {
+        margin-right: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+      &:before {
+        content: "\f105";
+        font-family: FontAwesome;
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: inherit;
+        margin-right: 10px;
+        color: #01224f;
+      }
+      .more {
+        position: absolute;
+        right: 0;
+        width: 100%;
+        z-index: 1;
+        top: 50%;
+        transform: translate(0, -50%);
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+        color: #01224f;
+        letter-spacing: initial;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 10px;
+        &:hover {
+          color: #e8371a;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .parcours {
+    .container {
+      flex-direction: column;
+      .left {
+        width: 100%;
+      }
+      .right {
+        width: 100%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 550px) {
+  .parcours {
+    .content {
+      .line {
+        .more {
+          opacity: 0;
+        }
+        flex-direction: column;
+        padding: 15px 0;
+        &:before {
+          margin-bottom: 10px;
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+}
+</style>

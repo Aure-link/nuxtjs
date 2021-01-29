@@ -1,20 +1,15 @@
 <template>
   <div class="home_container">
-    <app-slider />
+    <home-slider />
+    <home-projects />
   </div>
 </template>
 
 <script>
-import AppSlider from '../components/Home/AppSlider.vue'
-export default {
-  components: { AppSlider },}
+  export default {
+  }
 </script>
 
 <style lang="scss">
-  .home_container {
-    background-color: red;
-    .header {
-      background-color: green;
-    }
-  }
+
 </style>
